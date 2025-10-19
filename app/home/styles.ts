@@ -7,6 +7,7 @@ export const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: "bold",
     marginBottom: 20,
+    paddingTop: 10,
     textAlign: "center",
   },
 
@@ -41,7 +42,7 @@ export const styles = StyleSheet.create({
 
   textoItem: {
     display: "flex",
-    flexDirection: "row",
+    flexDirection: "row-reverse",
     justifyContent: "space-between",
     fontSize: 16,
   },

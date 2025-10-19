@@ -1,20 +1,24 @@
-import { Item } from "@/hooks/ useShoppingList";
+import { ConfirmModal } from "@/components/ConfirmModal";
+import { Item } from "@/types/item";
 import { FontAwesome } from "@expo/vector-icons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import React, { useEffect, useState } from "react";
 import {
   FlatList,
+  StatusBar,
   Text,
   TextInput,
   TouchableOpacity,
   View,
 } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { styles } from "./style";
+import { styles } from "./styles";
 
 export default function Home() {
   const [item, setItem] = useState("");
   const [lista, setLista] = useState<Item[]>([]);
+
+  const [modalVisible, setModalVisible] = useState(false);
+  const [itemToDelete, setItemToDelete] = useState<string | null>(null);
 
   useEffect(() => {
     carregarLista();
@@ -63,12 +67,22 @@ export default function Home() {
   };
 
   const removerItem = (id: string) => {
-    const novaLista = lista.filter((i) => i.id !== id);
-    setLista(novaLista);
+    setItemToDelete(id);
+    setModalVisible(true);
   };
 
+  function confirmarRemocao() {
+    if (itemToDelete) {
+      const novaLista = lista.filter((i) => i.id !== itemToDelete);
+      setLista(novaLista);
+      setItemToDelete(null);
+      setModalVisible(false);
+    }
+  }
+
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
+      <StatusBar barStyle="dark-content" backgroundColor="#fff" />
       <Text style={styles.titulo}>
         <FontAwesome name="shopping-cart" size={24} color="rgb(33 150 243)" />
         <Text> Lista de Compras</Text>
@@ -99,17 +113,33 @@ export default function Home() {
             onLongPress={() => removerItem(item.id)}
           >
             <View style={styles.textoItem}>
-              {item.purchased ? (
-                <FontAwesome name="check-square" size={20} color={"green"} />
-              ) : (
-                <FontAwesome name="square-o" size={20} color={"black"} />
-              )}
+              <View style={{ flexDirection: "row" }}>
+                {item.purchased ? (
+                  <FontAwesome name="check-square" size={20} color={"green"} />
+                ) : (
+                  <FontAwesome name="square-o" size={20} color={"black"} />
+                )}
 
-              <Text> {item.name}</Text>
+                <TouchableOpacity
+                  style={{ marginLeft: 10 }}
+                  onPress={() => removerItem(item.id)}
+                >
+                  <FontAwesome name="trash" size={20} color={"#cf0000"} />
+                </TouchableOpacity>
+              </View>
+
+              <Text style={{ flexShrink: 1 }}> {item.name}</Text>
             </View>
           </TouchableOpacity>
         )}
       />
-    </SafeAreaView>
+
+      <ConfirmModal
+        visible={modalVisible}
+        message="Tem certeza que deseja deletar este item?"
+        onCancel={() => setModalVisible(false)}
+        onConfirm={confirmarRemocao}
+      />
+    </View>
   );
 }

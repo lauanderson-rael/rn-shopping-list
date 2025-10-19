@@ -7,10 +7,11 @@ export const styles = StyleSheet.create({
     backgroundColor: "#fff",
   },
   titulo: {
-    fontSize: 26,
+    fontSize: 24,
     fontWeight: "bold",
     textAlign: "center",
     marginBottom: 20,
+    paddingTop: 10,
   },
   subtitulo: {
     fontSize: 18,

@@ -1,4 +1,4 @@
-import { Item } from "@/hooks/ useShoppingList";
+import { Item } from "@/types/item";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 interface ListItemProps {

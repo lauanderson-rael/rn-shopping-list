@@ -1,12 +1,7 @@
+import { Item } from "@/types";
 import { getData, saveData } from "@/utils/storage";
 import { randomUUID } from "crypto";
 import { useEffect, useState } from "react";
-
-export interface Item {
-  id: string;
-  name: string;
-  purchased: boolean;
-}
 
 export default function useShoppingList() {
   const [lista, setLista] = useState<Item[]>([]);

@@ -6,7 +6,7 @@ Um aplicativo simples e intuitivo para gerenciar sua lista de compras, desenvolv
 
 - ✅ Adicionar itens à lista
 - ✅ Marcar itens como comprados
-- ✅ Remover itens (pressione e segure)
+- ✅ Remover itens (clique no icone ou pressione e segure)
 - ✅ Persistência de dados local
 - ✅ Interface responsiva e intuitiva
 
@@ -41,24 +41,18 @@ cd rn-shopping-list
 npm install
 ```
 
-3. **Instale a dependência do SafeAreaView:**
-
-```bash
-npm install react-native-safe-area-context
-```
-
-4. **Inicie o projeto:**
+3. **Inicie o projeto:**
 
 ```bash
 npx expo start
 ```
 
-5. **Execute no dispositivo:**
+4. **Execute no dispositivo:**
    - Baixe o app **Expo Go** na Play Store/App Store
    - Escaneie o QR Code que aparece no terminal
    - Ou pressione `a` para Android ou `i` para iOS (se tiver simulador)
 
-## 📱 Como Usar
+## 📱 Telas do Aplicativo
 
 ### Tela Principal (Home)
 
@@ -67,11 +61,15 @@ npx expo start
 - Toque no item para marcar/desmarcar como comprado
 - Pressione e segure o item para removê-lo
 
+<img src="./screenshots/home.png" alt="Tela Home" width="300">
+
 ### Tela Sobre
 
 - Informações sobre o aplicativo
 - Tecnologias utilizadas
 - Link para o repositório
+
+<img src="./screenshots/about.png" alt="Tela Sobre" width="300">
 
 ## 📁 Estrutura do Projeto
 
@@ -90,6 +88,7 @@ app-shopping-list/
 │   └── useShoppingList.ts   # Hook personalizado
 ├── utils/
 │   └── storage.ts           # Utilitários de armazenamento
+├── types/                   # Tipos gerais
 └── assets/                  # Imagens e recursos
 ```
 

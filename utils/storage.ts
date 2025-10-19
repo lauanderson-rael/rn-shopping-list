@@ -1,4 +1,4 @@
-import { Item } from "@/hooks/ useShoppingList";
+import { Item } from "@/types/item";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const STORAGE_KEY = "@lista_compras";

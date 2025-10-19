@@ -1,29 +1,20 @@
 import React from "react";
-import { Linking, ScrollView, Text, TouchableOpacity } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
+import {
+  Linking,
+  ScrollView,
+  StatusBar,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 
-import { styles } from "./style";
+import { styles } from "./styles";
 export default function Sobre() {
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: "#fff" }}>
+    <View style={{ flex: 1, backgroundColor: "#fff" }}>
+      <StatusBar backgroundColor="#fff" barStyle="dark-content" />
       <ScrollView contentContainerStyle={styles.container}>
         <Text style={styles.titulo}>Sobre o Aplicativo</Text>
-
-        <Text style={styles.texto}>
-          Este aplicativo foi desenvolvido com o objetivo de facilitar o
-          controle de compras do usuário no dia a dia. Ele permite adicionar
-          itens, marcar como comprados, remover e salvar automaticamente no
-          dispositivo, garantindo praticidade e organização.
-        </Text>
-
-        <Text style={styles.subtitulo}>Objetivos do Projeto</Text>
-        <Text style={styles.texto}>
-          Aplicar conceitos fundamentais do React Native{"\n"}
-          Demonstrar uso de componentes visuais (View, Text, TouchableOpacity)
-          {"\n"}
-          Utilizar AsyncStorage para persistência de dados{"\n"}
-          Proporcionar uma interface simples, funcional e intuitiva
-        </Text>
 
         <Text style={styles.texto}>
           Este aplicativo foi desenvolvido com o objetivo de facilitar o
@@ -62,8 +53,18 @@ export default function Sobre() {
           <Text style={styles.textoBotao}>Acessar Repositório no GitHub</Text>
         </TouchableOpacity>
 
-        <Text style={styles.creditos}>Desenvolvido por: Lauanderson Rael</Text>
+        <Text style={styles.creditos}>
+          Desenvolvido por:{" "}
+          <Text
+            style={{ color: "#2196F3", textDecorationLine: "underline" }}
+            onPress={() => {
+              Linking.openURL("https://github.com/lauanderson-rael");
+            }}
+          >
+            Lauanderson Rael
+          </Text>
+        </Text>
       </ScrollView>
-    </SafeAreaView>
+    </View>
   );
 }
