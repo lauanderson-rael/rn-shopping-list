@@ -1,5 +1,5 @@
 {
-  "name": "app-shopping-list",
+  "name": "rn-shopping-list",
   "main": "expo-router/entry",
   "version": "1.0.0",
   "scripts": {

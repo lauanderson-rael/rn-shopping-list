@@ -120,42 +120,11 @@ npx expo build:android
 npx expo build:ios
 ```
 
-## 🐛 Solução de Problemas
-
-### Erro de SafeArea
-
-Se encontrar erros relacionados ao SafeAreaView:
-
-```bash
-npm install react-native-safe-area-context
-npx expo install --fix
-```
-
-### Cache do Expo
-
-Para limpar o cache:
-
-```bash
-npx expo start --clear
-```
-
-## 🤝 Contribuição
-
-1. Faça um fork do projeto
-2. Crie uma branch para sua feature (`git checkout -b feature/nova-feature`)
-3. Commit suas mudanças (`git commit -m 'Adiciona nova feature'`)
-4. Push para a branch (`git push origin feature/nova-feature`)
-5. Abra um Pull Request
-
-## 📄 Licença
-
-Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
-
 ## 👨‍💻 Desenvolvedor
 
 **Lauanderson Rael**
 
-- GitHub: [@lauanderson](https://github.com/lauanderson)
+- GitHub: [@lauanderson](https://github.com/lauanderson-rael)
 
 ---
 

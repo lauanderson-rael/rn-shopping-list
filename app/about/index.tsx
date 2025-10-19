@@ -53,7 +53,11 @@ export default function Sobre() {
 
         <TouchableOpacity
           style={styles.botao}
-          onPress={() => Linking.openURL("https://github.com/seuRepositorio")}
+          onPress={() =>
+            Linking.openURL(
+              "https://github.com/lauanderson-rael/rn-shopping-list"
+            )
+          }
         >
           <Text style={styles.textoBotao}>Acessar Repositório no GitHub</Text>
         </TouchableOpacity>
