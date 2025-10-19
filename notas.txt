@@ -1,0 +1,16 @@
+
+Página 1 - Lista de compras
+Página 2 - Sobre o app
+
+Uma tela simples com:
+
+    - Nome do app
+
+    - Objetivo
+
+    - Seu nome e matrícula
+
+    - Professor e disciplina
+
+Por que é útil:
+Fácil de fazer e mostra organização do app.
