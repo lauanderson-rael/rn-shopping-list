@@ -18,7 +18,6 @@ Um aplicativo simples e intuitivo para gerenciar sua lista de compras, desenvolv
 - **AsyncStorage** para armazenamento local
 - **Expo Router** para navegação
 - **FontAwesome** para ícones
-- **SafeAreaView** para compatibilidade com diferentes dispositivos
 
 ## 📋 Pré-requisitos
 

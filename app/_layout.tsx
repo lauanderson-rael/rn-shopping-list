@@ -7,10 +7,8 @@ export default function RootLayout() {
         tabBarStyle: { backgroundColor: "#ffffff" },
       }}
     >
-      <Tabs.Screen name="index" options={{ href: null }} />
-
       <Tabs.Screen
-        name="home"
+        name="index"
         options={{
           title: "Home",
           headerShown: false,

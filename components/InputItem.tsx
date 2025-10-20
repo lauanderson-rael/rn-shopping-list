@@ -26,6 +26,7 @@ export function InputItem({ onAdd }: InputItemProps) {
         placeholder="Digite um item..."
         value={text}
         onChangeText={setText}
+        onSubmitEditing={handleAdd}
       />
       <TouchableOpacity style={styles.button} onPress={handleAdd}>
         <Text style={styles.buttonText}>Adicionar</Text>
@@ -46,7 +47,7 @@ const styles = StyleSheet.create({
     marginRight: 10,
   },
   button: {
-    backgroundColor: "#1F3C88",
+    backgroundColor: "#2196F3",
     paddingVertical: 12,
     paddingHorizontal: 16,
     borderRadius: 8,
