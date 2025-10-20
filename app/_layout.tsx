@@ -10,7 +10,7 @@ export default function RootLayout() {
       <Tabs.Screen name="index" options={{ href: null }} />
 
       <Tabs.Screen
-        name="home/index"
+        name="home"
         options={{
           title: "Home",
           headerShown: false,
@@ -26,7 +26,7 @@ export default function RootLayout() {
       />
 
       <Tabs.Screen
-        name="about/index"
+        name="about"
         options={{
           title: "Sobre o App",
           headerShown: false,

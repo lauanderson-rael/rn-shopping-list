@@ -1,15 +1,14 @@
-import { Item } from "@/types";
+import { Item } from "@/types/item";
 import { getData, saveData } from "@/utils/storage";
-import { randomUUID } from "crypto";
 import { useEffect, useState } from "react";
 
 export default function useShoppingList() {
-  const [lista, setLista] = useState<Item[]>([]);
+  const [list, setList] = useState<Item[]>([]);
 
   useEffect(() => {
     async function loadData() {
       const data = await getData();
-      setLista(data);
+      setList(data);
     }
     loadData();
   }, []);
@@ -17,33 +16,43 @@ export default function useShoppingList() {
   async function addItem(name: string) {
     if (name.trim() === "") return;
     const newItem: Item = {
-      id: randomUUID(),
+      id: String(Date.now()),
       name: name,
       purchased: false,
     };
-    const newList = [...lista, newItem];
-    setLista(newList);
+    const newList = [...list, newItem];
+    setList(newList);
     await saveData(newList);
   }
 
   async function toggleItem(id: string) {
-    const novaLista = lista.map((item) =>
+    const novaLista = list.map((item) =>
       item.id === id ? { ...item, purchased: !item.purchased } : item
     );
-    setLista(novaLista);
+    setList(novaLista);
     await saveData(novaLista);
   }
 
   async function removeItem(id: string) {
-    const novaLista = lista.filter((item) => item.id !== id);
-    setLista(novaLista);
+    const novaLista = list.filter((item) => item.id !== id);
+    setList(novaLista);
+    await saveData(novaLista);
+  }
+
+  async function editItem(id: string, newName: string) {
+    if (newName.trim() === "") return;
+    const novaLista = list.map((item) =>
+      item.id === id ? { ...item, name: newName.trim() } : item
+    );
+    setList(novaLista);
     await saveData(novaLista);
   }
 
   return {
-    lista,
+    list,
     addItem,
     toggleItem,
     removeItem,
+    editItem,
   };
 }

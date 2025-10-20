@@ -6,6 +6,7 @@ Um aplicativo simples e intuitivo para gerenciar sua lista de compras, desenvolv
 
 - ✅ Adicionar itens à lista
 - ✅ Marcar itens como comprados
+- ✅ Editar itens
 - ✅ Remover itens (clique no icone ou pressione e segure)
 - ✅ Persistência de dados local
 - ✅ Interface responsiva e intuitiva
@@ -61,7 +62,7 @@ npx expo start
 - Toque no item para marcar/desmarcar como comprado
 - Pressione e segure o item para removê-lo
 
-<img src="./screenshots/home.png" alt="Tela Home" width="300">
+<img src="./assets/screenshots/home.png" alt="Tela Home" width="300">
 
 ### Tela Sobre
 
@@ -69,7 +70,7 @@ npx expo start
 - Tecnologias utilizadas
 - Link para o repositório
 
-<img src="./screenshots/about.png" alt="Tela Sobre" width="300">
+<img src="./assets/screenshots/about.png" alt="Tela Sobre" width="300">
 
 ## 📁 Estrutura do Projeto
 

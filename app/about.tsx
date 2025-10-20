@@ -7,8 +7,8 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+import { styles } from "../styles/about";
 
-import { styles } from "./styles";
 export default function Sobre() {
   return (
     <View style={{ flex: 1, backgroundColor: "#fff" }}>

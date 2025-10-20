@@ -1,8 +1,7 @@
 import { ConfirmModal } from "@/components/ConfirmModal";
-import { Item } from "@/types/item";
+import { EditModal } from "@/components/EditModal";
 import { FontAwesome } from "@expo/vector-icons";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
   FlatList,
   StatusBar,
@@ -11,59 +10,46 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import { styles } from "./styles";
+import useShoppingList from "../hooks/useShoppingList";
+import { styles } from "../styles/home";
 
 export default function Home() {
+  // estados
   const [item, setItem] = useState("");
-  const [lista, setLista] = useState<Item[]>([]);
-
+  const [editingText, setEditingText] = useState("");
   const [modalVisible, setModalVisible] = useState(false);
+  const [editModalVisible, setEditModalVisible] = useState(false);
   const [itemToDelete, setItemToDelete] = useState<string | null>(null);
+  const [itemToEdit, setItemToEdit] = useState<string | null>(null);
 
-  useEffect(() => {
-    carregarLista();
-  }, []);
+  // hook personalizado
+  const { list, addItem, toggleItem, removeItem, editItem } = useShoppingList();
 
-  // Salvar sempre que a lista mudar
-  useEffect(() => {
-    salvarLista(lista);
-  }, [lista]);
-
-  const salvarLista = async (dados: Item[]) => {
-    try {
-      await AsyncStorage.setItem("@listaCompras", JSON.stringify(dados));
-    } catch (error) {
-      console.log("Erro ao salvar:", error);
-    }
-  };
-
-  const carregarLista = async () => {
-    try {
-      const dados = await AsyncStorage.getItem("@listaCompras");
-      if (dados) {
-        setLista(JSON.parse(dados));
-      }
-    } catch (error) {
-      console.log("Erro ao carregar:", error);
-    }
-  };
-
-  const adicionarItem = () => {
-    if (item.trim() === "") return;
-    const novoItem: Item = {
-      id: String(Date.now()),
-      name: item,
-      purchased: false,
-    };
-    setLista([...lista, novoItem]);
+  // funcoes
+  const adicionarItem = async () => {
+    await addItem(item);
     setItem("");
   };
 
-  const alternarComprado = (id: string) => {
-    const novaLista = lista.map((i) =>
-      i.id === id ? { ...i, purchased: !i.purchased } : i
-    );
-    setLista(novaLista);
+  const iniciarEdicao = (id: string, name: string) => {
+    setItemToEdit(id);
+    setEditingText(name);
+    setEditModalVisible(true);
+  };
+
+  const salvarEdicao = async () => {
+    if (itemToEdit && editingText.trim()) {
+      await editItem(itemToEdit, editingText);
+    }
+    setItemToEdit(null);
+    setEditingText("");
+    setEditModalVisible(false);
+  };
+
+  const cancelarEdicao = () => {
+    setItemToEdit(null);
+    setEditingText("");
+    setEditModalVisible(false);
   };
 
   const removerItem = (id: string) => {
@@ -71,15 +57,13 @@ export default function Home() {
     setModalVisible(true);
   };
 
-  function confirmarRemocao() {
+  const confirmarRemocao = async () => {
     if (itemToDelete) {
-      const novaLista = lista.filter((i) => i.id !== itemToDelete);
-      setLista(novaLista);
+      await removeItem(itemToDelete);
       setItemToDelete(null);
       setModalVisible(false);
     }
-  }
-
+  };
   return (
     <View style={styles.container}>
       <StatusBar barStyle="dark-content" backgroundColor="#fff" />
@@ -94,6 +78,7 @@ export default function Home() {
           placeholder="Digite um item..."
           value={item}
           onChangeText={setItem}
+          onSubmitEditing={adicionarItem} // tecla enter
         />
         <TouchableOpacity style={styles.botaoAdicionar} onPress={adicionarItem}>
           <Text style={styles.textoBotao}>Adicionar</Text>
@@ -101,7 +86,7 @@ export default function Home() {
       </View>
 
       <FlatList
-        data={lista}
+        data={list}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
           <TouchableOpacity
@@ -109,19 +94,35 @@ export default function Home() {
               styles.item,
               item.purchased ? styles.itemComprado : styles.itemPendente,
             ]}
-            onPress={() => alternarComprado(item.id)}
+            onPress={() => toggleItem(item.id)}
             onLongPress={() => removerItem(item.id)}
           >
             <View style={styles.textoItem}>
               <View style={{ flexDirection: "row" }}>
-                {item.purchased ? (
-                  <FontAwesome name="check-square" size={20} color={"green"} />
-                ) : (
-                  <FontAwesome name="square-o" size={20} color={"black"} />
-                )}
+                {/* check */}
+                <TouchableOpacity onPress={() => toggleItem(item.id)}>
+                  {item.purchased ? (
+                    <FontAwesome
+                      name="check-square"
+                      size={20}
+                      color={"green"}
+                    />
+                  ) : (
+                    <FontAwesome name="square-o" size={20} color={"black"} />
+                  )}
+                </TouchableOpacity>
 
+                {/* editar */}
                 <TouchableOpacity
-                  style={{ marginLeft: 10 }}
+                  style={{ marginLeft: 20 }}
+                  onPress={() => iniciarEdicao(item.id, item.name)}
+                >
+                  <FontAwesome name="edit" size={20} color={"#0066cc"} />
+                </TouchableOpacity>
+
+                {/* remover */}
+                <TouchableOpacity
+                  style={{ marginLeft: 20 }}
                   onPress={() => removerItem(item.id)}
                 >
                   <FontAwesome name="trash" size={20} color={"#cf0000"} />
@@ -139,6 +140,14 @@ export default function Home() {
         message="Tem certeza que deseja deletar este item?"
         onCancel={() => setModalVisible(false)}
         onConfirm={confirmarRemocao}
+      />
+
+      <EditModal
+        visible={editModalVisible}
+        value={editingText}
+        onChangeText={setEditingText}
+        onConfirm={salvarEdicao}
+        onCancel={cancelarEdicao}
       />
     </View>
   );
