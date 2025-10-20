@@ -27,6 +27,7 @@ export function InputItem({ onAdd }: InputItemProps) {
         value={text}
         onChangeText={setText}
         onSubmitEditing={handleAdd}
+        placeholderTextColor={"#777"}
       />
       <TouchableOpacity style={styles.button} onPress={handleAdd}>
         <Text style={styles.buttonText}>Adicionar</Text>
