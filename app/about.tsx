@@ -24,23 +24,37 @@ export default function Sobre() {
         </Text>
 
         <Text style={styles.subtitulo}>Objetivos do Projeto</Text>
-        <Text style={styles.texto}>
-          Aplicar conceitos fundamentais do React Native{"\n"}
-          Demonstrar uso de componentes visuais (View, Text, TouchableOpacity)
-          {"\n"}
-          Utilizar AsyncStorage para persistência de dados{"\n"}
-          Proporcionar uma interface simples, funcional e intuitiva
-        </Text>
+        <View style={styles.lista}>
+          <Text style={styles.itemLista}>
+            • Aplicar conceitos fundamentais do React Native
+          </Text>
+          <Text style={styles.itemLista}>
+            • Demonstrar uso de componentes visuais (View, Text,
+            TouchableOpacity)
+          </Text>
+          <Text style={styles.itemLista}>
+            • Utilizar AsyncStorage para persistência de dados
+          </Text>
+          <Text style={styles.itemLista}>
+            • Proporcionar uma interface simples, funcional e intuitiva
+          </Text>
+        </View>
 
         <Text style={styles.subtitulo}>Tecnologias Utilizadas</Text>
-        <Text style={styles.texto}>
-          • React Native (com Expo){"\n"}• TypeScript{"\n"}• AsyncStorage para
-          armazenamento{"\n"}• Estilização com StyleSheet{"\n"}• Expo Router
-          para navegação entre telas
-        </Text>
+        <View style={styles.lista}>
+          <Text style={styles.itemLista}>• React Native (com Expo)</Text>
+          <Text style={styles.itemLista}>• TypeScript</Text>
+          <Text style={styles.itemLista}>
+            • AsyncStorage para armazenamento
+          </Text>
+          <Text style={styles.itemLista}>• Estilização com StyleSheet</Text>
+          <Text style={styles.itemLista}>
+            • Expo Router para navegação entre telas
+          </Text>
+        </View>
 
         <Text style={styles.subtitulo}>Versão do App</Text>
-        <Text style={styles.texto}>Versão 1.0.0</Text>
+        <Text style={styles.texto}>Versão 1.0.1</Text>
 
         <TouchableOpacity
           style={styles.botao}

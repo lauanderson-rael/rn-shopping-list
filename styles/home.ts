@@ -46,4 +46,26 @@ export const styles = StyleSheet.create({
     justifyContent: "space-between",
     fontSize: 16,
   },
+
+  emptyContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    paddingTop: 50,
+  },
+
+  emptyText: {
+    fontSize: 20,
+    fontWeight: "bold",
+    color: "#666",
+    marginTop: 20,
+    textAlign: "center",
+  },
+
+  emptySubText: {
+    fontSize: 16,
+    color: "#999",
+    marginTop: 10,
+    textAlign: "center",
+  },
 });

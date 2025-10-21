@@ -42,4 +42,12 @@ export const styles = StyleSheet.create({
     textAlign: "center",
     color: "#555",
   },
+  lista: {
+    marginLeft: 10,
+  },
+  itemLista: {
+    fontSize: 16,
+    lineHeight: 24,
+    marginBottom: 5,
+  },
 });

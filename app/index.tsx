@@ -64,7 +64,7 @@ export default function Home() {
   };
   return (
     <View style={styles.container}>
-      <StatusBar barStyle="dark-content" backgroundColor="#fff" />
+      <StatusBar barStyle="dark-content" backgroundColor="#ffffff" />
       <Text style={styles.titulo}>
         <FontAwesome name="shopping-cart" size={24} color="rgb(33 150 243)" />
         <Text> Lista de Compras</Text>
@@ -72,55 +72,65 @@ export default function Home() {
 
       <InputItem onAdd={adicionarItem} />
 
-      <FlatList
-        data={list}
-        keyExtractor={(item) => item.id}
-        renderItem={({ item }) => (
-          <TouchableOpacity
-            style={[
-              styles.item,
-              item.purchased ? styles.itemComprado : styles.itemPendente,
-            ]}
-            onPress={() => toggleItem(item.id)}
-            onLongPress={() => removerItem(item.id)}
-          >
-            <View style={styles.textoItem}>
-              <View style={{ flexDirection: "row" }}>
-                {/* check */}
-                <TouchableOpacity onPress={() => toggleItem(item.id)}>
-                  {item.purchased ? (
-                    <FontAwesome
-                      name="check-square"
-                      size={20}
-                      color={"green"}
-                    />
-                  ) : (
-                    <FontAwesome name="square-o" size={20} color={"black"} />
-                  )}
-                </TouchableOpacity>
+      {list.length === 0 ? (
+        <View style={styles.emptyContainer}>
+          <FontAwesome name="shopping-basket" size={60} color="#ccc" />
+          <Text style={styles.emptyText}>Sua lista está vazia</Text>
+          <Text style={styles.emptySubText}>
+            Adicione itens para começar suas compras!
+          </Text>
+        </View>
+      ) : (
+        <FlatList
+          data={list}
+          keyExtractor={(item) => item.id}
+          renderItem={({ item }) => (
+            <TouchableOpacity
+              style={[
+                styles.item,
+                item.purchased ? styles.itemComprado : styles.itemPendente,
+              ]}
+              onPress={() => toggleItem(item.id)}
+              onLongPress={() => removerItem(item.id)}
+            >
+              <View style={styles.textoItem}>
+                <View style={{ flexDirection: "row" }}>
+                  {/* check */}
+                  <TouchableOpacity onPress={() => toggleItem(item.id)}>
+                    {item.purchased ? (
+                      <FontAwesome
+                        name="check-square"
+                        size={20}
+                        color={"green"}
+                      />
+                    ) : (
+                      <FontAwesome name="square-o" size={20} color={"black"} />
+                    )}
+                  </TouchableOpacity>
 
-                {/* editar */}
-                <TouchableOpacity
-                  style={{ marginLeft: 20 }}
-                  onPress={() => iniciarEdicao(item.id, item.name)}
-                >
-                  <FontAwesome name="edit" size={20} color={"#0066cc"} />
-                </TouchableOpacity>
+                  {/* editar */}
+                  <TouchableOpacity
+                    style={{ marginLeft: 20 }}
+                    onPress={() => iniciarEdicao(item.id, item.name)}
+                  >
+                    <FontAwesome name="edit" size={20} color={"#0066cc"} />
+                  </TouchableOpacity>
 
-                {/* remover */}
-                <TouchableOpacity
-                  style={{ marginLeft: 20 }}
-                  onPress={() => removerItem(item.id)}
-                >
-                  <FontAwesome name="trash" size={20} color={"#cf0000"} />
-                </TouchableOpacity>
+                  {/* remover */}
+                  <TouchableOpacity
+                    style={{ marginLeft: 20 }}
+                    onPress={() => removerItem(item.id)}
+                  >
+                    <FontAwesome name="trash" size={20} color={"#cf0000"} />
+                  </TouchableOpacity>
+                </View>
+
+                <Text style={{ flexShrink: 1 }}> {item.name}</Text>
               </View>
-
-              <Text style={{ flexShrink: 1 }}> {item.name}</Text>
-            </View>
-          </TouchableOpacity>
-        )}
-      />
+            </TouchableOpacity>
+          )}
+        />
+      )}
 
       <ConfirmModal
         visible={modalVisible}

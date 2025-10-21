@@ -77,29 +77,34 @@ npx expo start
 app-shopping-list/
 ├── app/
 │   ├── _layout.tsx          # Layout principal com navegação
-│   ├── home/
-│   │   ├── index.tsx        # Tela principal da lista
-│   │   └── style.ts         # Estilos da tela home
-│   └── about/
-│       ├── index.tsx        # Tela sobre o app
-│       └── style.tsx        # Estilos da tela sobre
-├── components/              # Componentes reutilizáveis
+│   ├── index.tsx            # Tela inicial
+│   ├── home.tsx             # Tela principal da lista
+│   └── about.tsx            # Tela sobre o app
+├── components/
+│   ├── ConfirmModal.tsx     # Modal de confirmação
+│   ├── EditModal.tsx        # Modal de edição
+│   ├── InputItem.tsx        # Componente de input
+│   └── ListItem.tsx         # Componente de item da lista
 ├── hooks/
 │   └── useShoppingList.ts   # Hook personalizado
+├── styles/
+│   ├── home.ts              # Estilos da tela home
+│   └── about.ts             # Estilos da tela sobre
 ├── utils/
 │   └── storage.ts           # Utilitários de armazenamento
-├── types/                   # Tipos gerais
+├── types/
+│   └── item.ts              # Tipos do item
 └── assets/                  # Imagens e recursos
 ```
 
 ## 🎨 Personalização
 
-### Cores do Tema
+### Cores do Tema (Claro)
 
 As cores principais estão definidas nos arquivos de estilo:
 
-- Azul principal: `#004b77`
-- Azul secundário: `#1F3C88`
+- Azul principal: `#2196F3`
+- Branco principal: `#FFFFFF`
 
 ### Ícones
 
