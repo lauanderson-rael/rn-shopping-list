@@ -37,11 +37,12 @@ export function InputItem({ onAdd }: InputItemProps) {
 }
 
 const styles = StyleSheet.create({
-  container: { flexDirection: "row", marginBottom: 20 },
+  container: { flexDirection: "row", marginBottom: 10 },
   input: {
     flex: 1,
     backgroundColor: "#fff",
-    padding: 12,
+    padding: 10,
+    fontSize: 16,
     borderRadius: 8,
     borderWidth: 1,
     borderColor: "#ccc",

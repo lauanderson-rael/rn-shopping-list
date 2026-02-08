@@ -37,9 +37,9 @@ export const styles = StyleSheet.create({
     fontSize: 16,
   },
   creditos: {
-    marginTop: 40,
+    marginTop: 20,
     fontSize: 14,
-    textAlign: "center",
+    textAlign: "left",
     color: "#555",
   },
   lista: {

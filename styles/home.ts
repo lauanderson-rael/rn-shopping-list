@@ -31,20 +31,25 @@ export const styles = StyleSheet.create({
   textoBotao: { color: "#fff", fontWeight: "bold" },
 
   item: {
-    padding: 15,
+    padding: 10,
     borderRadius: 8,
     marginBottom: 10,
   },
 
   itemPendente: { backgroundColor: "#f8d7da" },
 
-  itemComprado: { backgroundColor: "#d4edda" },
+  itemComprado: { backgroundColor: "#d4edda"  },
 
   textoItem: {
     display: "flex",
     flexDirection: "row-reverse",
     justifyContent: "space-between",
+    alignItems: "center", // Align items vertically center
+  },
+
+  itemText: {
     fontSize: 16,
+    flexShrink: 1,
   },
 
   emptyContainer: {
