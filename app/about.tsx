@@ -33,7 +33,7 @@ export default function Sobre() {
         <Text style={styles.texto}>Versão: 1.0.1</Text>
 
         <Text style={styles.texto}> 
-          Desenvolvidedor:{" "}
+          Desenvolvedor:{" "}
           <Text
             style={{ color: "#2196F3", textDecorationLine: "underline" }}
             onPress={() => {
