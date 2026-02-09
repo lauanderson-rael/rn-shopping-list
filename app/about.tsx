@@ -30,7 +30,7 @@ export default function Sobre() {
 
         {/* <Text style={styles.subtitulo}></Text> */}
         <Text></Text>
-        <Text style={styles.texto}>Versão: 1.0.1</Text>
+        <Text style={styles.texto}>Versão: 1.0.2</Text>
 
         <Text style={styles.texto}> 
           Desenvolvedor:{" "}

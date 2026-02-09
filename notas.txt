@@ -1,16 +1,8 @@
+Comandos EAS:
 
-Página 1 - Lista de compras
-Página 2 - Sobre o app
+Gerar o APK do app:
+eas build -p --profile preview
 
-Uma tela simples com:
-
-    - Nome do app
-
-    - Objetivo
-
-    - Seu nome e matrícula
-
-    - Professor e disciplina
-
-Por que é útil:
-Fácil de fazer e mostra organização do app.
+Gerar AAB do app:   
+eas build -p --profile production
+ 
